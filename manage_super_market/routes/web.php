@@ -12,41 +12,34 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
-Route::get('/','AdminController@index')->name('admin.dashboard');
-
-/**
- * //URL authem.com/admin/dashboard
- * Route ddang nhap thanh cong
- */
-
-Route::get('/dashboard','AdminController@index')->name('admin.dashboard');
+Route::get('/home', function () {
+    return view('home');
+});
 
 
 
-
-
-Route::get('register', 'AdminController@create')->name('admin.register');
+Route::get('register', 'AdminController@create')->name('register');
 
 /**
  * URL authen.com/admin/register
  * Route dđăng kí từ form POST
  */
-Route::post('register', 'AdminController@store')->name('admin.register.store');
+Route::post('register', 'AdminController@store')->name('register.store');
 
 
-Route::get('login', 'LoginController@login')->name('admin.auth.login');
+Route::get('login', 'LoginController@login')->name('auth.login');
 
 /**
  * URL authen.com\admin\login
  * Xử lý đăng nhập
  */
-Route::post('login', 'LoginController@loginAdmin')->name('admin.auth.loginAdmin');
+Route::post('login', 'LoginController@loginAdmin')->name('auth.loginAdmin');
 
 /**
  * Route dùng để đăng xuất
  */
-Route::post('logout', 'LoginController@logout')->name('admin.auth.logout');
+Route::post('logout', 'LoginController@logout')->name('auth.logout');
