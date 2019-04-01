@@ -18,6 +18,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
+    <style>
+        .nav-item .nav-link {
+            float: left;
+            text-decoration: none;
+            margin-left: 40px;
+            list-style: none;
+        }
+        li {
+            list-style: none;
+        }
+    </style>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Dao;
 
 class AdminController extends Controller
 {
@@ -26,12 +27,16 @@ class AdminController extends Controller
             'password' => 'required'
         ));
 
-        $adminModel = new AdminModel();
-        $adminModel->username = $request->username;
-        $adminModel->email = $request->email;
-        $adminModel->password = bcrypt($request->password);
-        $adminModel->save();
 
-        return redirect()->route('admin.auth.login');
+        $username = $request->username;
+        $email = $request->email;
+        $password = bcrypt($request->password);
+
+        $para = array($username,$email,$password);
+//        var_dump($para);
+//        die;
+        Dao::call_stored_procedure('SPC_post_users_ACT01',$para);
+
+        return redirect()->route('auth.login');
     }
 }

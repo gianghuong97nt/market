@@ -178,7 +178,6 @@
                         <div class="profile_img">
                             <span class="prfil-img"><img src="{{ asset('admin_asset/images') }}/2.jpg" alt=""> </span>
                             <div class="user-name">
-
                                 <span>Administrator</span>
                             </div>
                             <i class="fa fa-angle-down lnr"></i>

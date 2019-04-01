@@ -25,29 +25,28 @@ class LoginController extends Controller
 
         ));
 
-        $get_user = Dao::call_stored_procedure('SPC_get_users_ACT01');
+        $email = $request->email;
+        $password = $request->password;
+
+        $params = array(
+            $email,
+            $password
+        );
+
+        $get_user = Dao::call_stored_procedure('SPC_get_users_ACT01',$params);
 
 
-
-//        var_dump( $get_user );
+//        var_dump( $get_user[0][0]['error']);
 //        exit;
 
-        if($request->email == $get_user['email'] && $request->password == $get_user['password']){
+        if((isset($get_user[0][0]['result'])?$get_user[0][0]['result']:'') == 'ok'){
             return redirect()->intended(route('home'));
         }
-
-
-
-        //Đăng nhập
-
-        if(Auth::guard('admin')->attempt(
-            ['email' => $request->email, 'password' => $request->password], $request->remember
-        )){
-            // Nếu đăng nhập thành công thì sẽ chuyển hướng về view dashboard
-            return redirect()->intended(route('dashboard'));
+        else{
+            return redirect()->intended(route('auth.login'));
         }
 
-        return redirect()->back()->withInput($request->only('email'));
+
     }
 
     /**

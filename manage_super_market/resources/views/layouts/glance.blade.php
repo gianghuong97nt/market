@@ -21,7 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- main content start-->
     <div id="page-wrapper">
         <div class="main-page">
-            @yield('content');
+            @yield('content')
         </div>
     </div>
     <!--footer-->
