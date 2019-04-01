@@ -18,31 +18,28 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Slug</th>
-                        <th>Image</th>
                         <th>Introduction</th>
                         <th>Desc</th>
-                        <th>note</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($cats as $cat)
                         <tr>
-                            <th scope="row">{{ $cat->id }}</th>
-                            <td>{{ $cat->name }}</td>
-                            <td>{{ $cat->slug }}</td>
-                            <td>{{ $cat->images }}</td>
-                            <td>{{ $cat->intro }}</td>
-                            <td>{{ $cat->desc }}</td>
+                            <th scope="row">{{ $cat['id']}}</th>
+                            <td>{{$cat['name']}}</td>
+                            <td>{{$cat['intro']}}</td>
+                            <td>{{$cat['desc']}}</td>
+
                             <td>
-                                <a href="{{ url('/category/'.$cat->id.'/edit') }}" class="btn btn-warning">Sửa</a>
-                                <a href="{{ url('/category/'.$cat->id.'/delete') }}" class="btn btn-danger">Xóa</a>
+                                <a href="{{ url('/category/'.$cat['id'].'/edit') }}" class="btn btn-warning">Sửa</a>
+                                <a href="{{ url('/category/'.$cat['id'].'/delete') }}" class="btn btn-danger">Xóa</a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                {{ $cats->links() }}
+                {{--{{ $cats->links() }}--}}
             </div>
         </div>
     </div>
