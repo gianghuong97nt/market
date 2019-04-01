@@ -41,3 +41,41 @@ Route::post('/login', 'LoginController@loginAdmin')->name('auth.loginAdmin');
  * Route dùng để đăng xuất
  */
 Route::post('/logout', 'LoginController@logout')->name('auth.logout');
+
+
+/**
+ * Route cho quản lý danh mục
+ */
+
+// Route quản lý danh mục sản phẩm
+
+Route::get('/category', 'CategoryController@index')->name('category');
+Route::get('/category/create', 'CategoryController@create')->name('category.create');
+Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
+Route::get('/category/{id}/delete', 'CategoryController@delete')->name('category.delete');
+
+// Route lưu trữ dữ liệu danh mục khi tọa mới
+Route::post('/category', 'CategoryController@store')->name('category.store');
+
+//Route lưu trữ dữ liệu danh mục khi sửa
+Route::post('/category/{id}', 'CategoryController@update')->name('category.update');
+
+//Route lưu trữ dữ liệu dnah mục khi xóa
+Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+
+
+
+//Route quản lý sản phẩm
+Route::get('/product', 'ProductController@index')->name('product');
+Route::get('/product/create', 'ProductController@create')->name('product.create');
+Route::get('/product/{id}/edit', 'ProductController@edit')->name('product.edit');
+Route::get('/product/{id}/delete', 'ProductController@delete')->name('product.delete');
+
+// Route lưu trữ dữ liệu khi tọa mới sản phẩm
+Route::post('/product', 'ProductController@store')->name('product.store');
+
+//Route lưu trữ dữ liệu sản phẩm khi sửa
+Route::post('/product/{id}', 'ProductController@update')->name('product.update');
+
+//Route lưu trữ dữ liệu sản phẩm khi xóa
+Route::post('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');

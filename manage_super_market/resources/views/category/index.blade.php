@@ -1,12 +1,3 @@
-<html>
-<head>
-</head>
-<body>
-<table class="table">
-
-</table>
-</body>
-
 @extends('layouts.glance')
 
 @section('title')
@@ -26,24 +17,32 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Tiêu đề</th>
-                        <th>Trạng thái</th>
-                        <th>Actions</th>
+                        <th>Name</th>
+                        <th>Slug</th>
+                        <th>Image</th>
+                        <th>Introduction</th>
+                        <th>Desc</th>
+                        <th>note</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php if ($articles) : ?>
-                    <?php foreach ($articles as $article) : ?>
-                    <tr>
-                        <td><?php echo $article['employee_no'] ?></td>
-                        <td><?php echo $article['employee_nm'] ?></td>
-                        <td><?php echo $article['birthday'] ?></td>
-                        <td></td>
-                    </tr>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
+                    @foreach ($cats as $cat)
+                        <tr>
+                            <th scope="row">{{ $cat->id }}</th>
+                            <td>{{ $cat->name }}</td>
+                            <td>{{ $cat->slug }}</td>
+                            <td>{{ $cat->images }}</td>
+                            <td>{{ $cat->intro }}</td>
+                            <td>{{ $cat->desc }}</td>
+                            <td>
+                                <a href="{{ url('/category/'.$cat->id.'/edit') }}" class="btn btn-warning">Sửa</a>
+                                <a href="{{ url('/category/'.$cat->id.'/delete') }}" class="btn btn-danger">Xóa</a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
+                {{ $cats->links() }}
             </div>
         </div>
     </div>
