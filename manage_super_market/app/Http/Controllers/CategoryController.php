@@ -10,25 +10,31 @@ class CategoryController extends Controller
     //
     public function index(){
         try {
-            $category = Dao::call_stored_procedure('[SPC_get_category_ACT01]');
+            $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_INQ01]');
             return view('category.index')
                 -> with('cats', $category[0]);
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
-
-//        //$items = CategoryModel::all();
-//        $items = DB::table('categories')->paginate(5);
-//        $data = array();
-//        $data['cats'] = $items;
-//        return view('category.index', $data);
     }
 
     public function create(){
         $data = array();
         return view('category.submit', $data);
 
+    }
+
+    public function detail($id){
+        $paramas = array($id);
+        try {
+            $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
+            return view('category.detail')
+                -> with('cats', $category[0]);
+
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
     }
 
     public function edit($id){

@@ -10,20 +10,13 @@ class ProductController extends Controller
     //
     public function index(){
         try {
-            $product = Dao::call_stored_procedure('[SPC_get_product_ACT01]');
+            $product = Dao::call_stored_procedure('[SPC_GET_PRODUCT_INQ01]');
             return view('product.index')
                 -> with('products', $product[0]);
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
-
-
-        //$items = ProductModel::all();
-//        $items = DB::table('products')->paginate(5);
-//        $data = array();
-//        $data['products'] = $items;
-//        return view('product.index', $data);
     }
 
     public function create(){

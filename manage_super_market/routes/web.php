@@ -64,7 +64,7 @@ Route::post('/category/{id}', 'CategoryController@update')->name('category.updat
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 //Route chi tiết các sản phẩm nằm trong danh mục nào đó
-Route::get('/category/{name}/detail', 'CategoryController@detail')->name('category.detail');
+Route::get('/category/{id}/detail', 'CategoryController@detail')->name('category.detail');
 
 
 
