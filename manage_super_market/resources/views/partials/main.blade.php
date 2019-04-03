@@ -1,4 +1,4 @@
-<script src="{{ asset('asset_asset') }}"></script>
+{{--<script src="{{ asset('asset_asset') }}"></script>--}}
 <script src="{{ asset('asset_asset/js/utils.js') }}"></script>
 
 <script>
@@ -413,4 +413,4 @@
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('admin_assets') }}"> </script>
+{{--<script src="{{ asset('admin_assets') }}"> </script>--}}

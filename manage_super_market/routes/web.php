@@ -63,6 +63,9 @@ Route::post('/category/{id}', 'CategoryController@update')->name('category.updat
 //Route lưu trữ dữ liệu dnah mục khi xóa
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
+//Route chi tiết các sản phẩm nằm trong danh mục nào đó
+Route::get('/category/{name}/detail', 'CategoryController@detail')->name('category.detail');
+
 
 
 //Route quản lý sản phẩm

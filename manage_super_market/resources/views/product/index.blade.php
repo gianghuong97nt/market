@@ -19,12 +19,10 @@
                         <th>ID</th>
                         <th>Product Name</th>
                         <th>Category name</th>
-                        <th>Slug</th>
-                        <th>Images</th>
-                        <th>Introduce</th>
                         <th>Desc</th>
-                        <th>Price Core</th>
-                        <th>Price Sale</th>
+                        <th>Price_Core</th>
+                        <th>Price_Sale</th>
+                        <th>Image</th>
                         <th>Stock</th>
                         <th>Action</th>
                     </tr>
@@ -32,25 +30,27 @@
                     <tbody>
                     @foreach($products as $product)
                     <tr>
-                        <th scope="row">{{$product->id}}</th>
-                        <td>{{$product->name}}</td>
-                        <td>{{$product->id}}</td>
-                        <td>{{$product->slug}}</td>
-                        <td>{{$product->images}}</td>
-                        <td>{{$product->intro}}</td>
-                        <td>{{$product->desc}}</td>
-                        <td>{{$product->priceCore}}</td>
-                        <td>{{$product->priceSale}}</td>
-                        <td>{{$product->stock}}</td>
+                        <th scope="row">{{$product['id']}}</th>
+                        <td>{{$product['name']}}</td>
+                        <td>{{$product['category']}}</td>
+                        <td>{{$product['desc']}}</td>
+                        <td>{{$product['price_core']}}</td>
+                        <td>{{$product['price_sale']}}</td>
+                        <td>{{$product['image']}}</td>
+                        <td>{{$product['stock']}}</td>
+                        {{--<td>--}}
+                        {{--<a class="btn btn-warning" id="btn-add-row-1">Thêm</a>--}}
+                        {{--<a class="btn btn-danger btn-remove-row-1">Xóa</a>--}}
+                        {{--</td>--}}
                         <td>
-                            <a href="{{url('product/'.$product->id.'/edit')}}" class="btn btn-warning">Sửa</a>
-                            <a href="{{url('product/'.$product->id.'/delete')}}" class="btn btn-danger">Xóa</a>
+                            <a href="{{url('product/'.$product['id'].'/edit')}}" class="btn btn-warning">Sửa</a>
+                            <a href="{{url('product/'.$product['id'].'/delete')}}" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $products->links() }}
+
             </div>
         </div>
     </div>

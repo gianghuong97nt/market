@@ -32,7 +32,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//webfonts-->
 
     <!-- chart -->
-    <script src="{{ asset('admin_asset/js/Chart.js') }}"></script>
+    {{--<script src="{{ asset('admin_asset/js/Chart.js') }}"></script>--}}
     <!-- //chart -->
 
     <!-- Metis Menu -->
