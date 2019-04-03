@@ -7,7 +7,8 @@ Quản trị danh mục sản phẩm
 <div class="container">
     <h1>Quản trị danh mục sản phẩm</h1>
     <div style="margin: 20px 0">
-        <a class="btn btn-success">Thêm danh mục</a>
+        <label>Tên danh mục</label>
+        <input type="text" value="{{$cat[0]['name']}}">
     </div>
     <div class="tables">
         <div class="table-responsive bs-example widget-shadow">
@@ -19,15 +20,29 @@ Quản trị danh mục sản phẩm
                     <th>Name</th>
                     <th>Introduction</th>
                     <th>Desc</th>
+                    <th>Image</th>
+                    <th>Price_Core</th>
+                    <th>Price_Sale</th>
+                    <th>Stock</th>
+                    <th>
+                        <a class="btn btn-success" id="btn-add-row-1"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($cats as $cat)
+                @foreach ($products as $product)
                 <tr>
-                    <td scope="row">{{ $cat['id']}}</td>
-                    <td><a href="{{ url('/category/'.$cat['id'].'/detail') }}">{{$cat['name']}}</a></td>
-                    <td>{{$cat['intro']}}</td>
-                    <td>{{$cat['desc']}}</td>
+                    <td scope="row"><input type="text" value="{{ $product['id']}}"></td>
+                    <td><input type="text" value="{{ $product['name']}}"></td>
+                    <td><input type="text" value="{{$product['intro']}}"></td>
+                    <td><input type="text" value="{{$product['desc']}}"></td>
+                    <td><input type="text" value="{{$product['image']}}"></td>
+                    <td><input type="text" value="{{$product['price_core']}}"></td>
+                    <td><input type="text" value="{{$product['price_sale']}}"></td>
+                    <td><input type="text" value="{{$product['stock']}}"></td>
+                    <td>
+                        <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -45,14 +60,17 @@ Quản trị danh mục sản phẩm
                 </thead>
                 <tbody>
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    {{--<td>--}}
-                        {{--<a class="btn btn-warning" >Thêm</a>--}}
-                        {{--<a class="btn btn-danger">Xóa</a>--}}
-                        {{--</td>--}}
+                    <td scope="row"><input type="text" ></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td>
+                        <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

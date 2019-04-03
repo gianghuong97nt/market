@@ -8,7 +8,6 @@ $(document).ready(function () {
 function initEvents() {
     //add row project member
     $(document).on('click','#btn-add-row-1',function () {
-        alert("abc");
         try {
             var row = $("#main_row_1 tbody tr:first").clone();
             $('#table-data-1 tbody').append(row);

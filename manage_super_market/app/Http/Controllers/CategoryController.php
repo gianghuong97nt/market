@@ -12,7 +12,8 @@ class CategoryController extends Controller
         try {
             $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_INQ01]');
             return view('category.index')
-                -> with('cats', $category[0]);
+                -> with('cats', $category[0])
+                -> with('abc', 100);
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
@@ -28,9 +29,14 @@ class CategoryController extends Controller
     public function detail($id){
         $paramas = array($id);
         try {
-            $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
+            $product  = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
+            $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ02',$paramas);
+
+//            var_dump($category);
+//            die;
             return view('category.detail')
-                -> with('cats', $category[0]);
+                -> with('products', $product[0])
+                -> with('cat',$category[0]);
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());

@@ -8,6 +8,7 @@
         <h1>Quản trị danh mục sản phẩm</h1>
         <div style="margin: 20px 0">
             <a class="btn btn-success">Thêm danh mục</a>
+            <input type="text" value="{{$abc}}">
         </div>
         <div class="tables">
             <div class="table-responsive bs-example widget-shadow">
