@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Helpers\Dao;
 
@@ -80,8 +81,9 @@ class CategoryController extends Controller
     public function upd(Request $request){
         try {
             $param = $request->all();
+            var_dump($param);
+            die;
 
-            dump($param);die;
 
             $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT02', $param);
 

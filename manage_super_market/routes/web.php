@@ -71,8 +71,6 @@ Route::get('/category/{id}/detail', 'CategoryController@detail')->name('category
 //Route update sản phẩm trong category
 Route::post('/category/upd', 'CategoryController@upd')->name('category.upd');
 
-
-
 //Route quản lý sản phẩm
 Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/product/create', 'ProductController@create')->name('product.create');

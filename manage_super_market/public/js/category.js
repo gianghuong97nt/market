@@ -33,8 +33,9 @@ function initEvents() {
         try {
             var len = $('#table-data-1 tbody tr').length;
             if(len > 1){
-                var productid = $(this).attr('updateproduct');
-                updateProduct(productid);
+                //lấy cha của đối tượng đang thao tác
+                var _this = $(this).closest('tr');
+                updateProduct(_this);
             }
         } catch (e) {
             alert('update row ' + e.message);
@@ -87,11 +88,29 @@ function deleteProduct(product_id) {
 }
 
 
-function updateProduct(product_id) {
+function updateProduct(element) {
     try {
         var data = {};
-        data.product_id = product_id;
-debugger;
+        var _this =element;
+        var id         = _this.find('.id').val();
+        var name       = _this.find('.name').val();
+        var image      = _this.find('.image').val();
+        var intro      = _this.find('.intro').val();
+        var desc       = _this.find('.desc').val();
+        var price_core = _this.find('.price_core').val();
+        var price_sale = _this.find('.price_sale').val();
+        var stock      = _this.find('.stock').val();
+
+
+        data.product_id = id;
+        data.name = name;
+        data.image = image;
+        data.intro = intro;
+        data.desc = desc;
+        data.price_core = price_core;
+        data.price_sale = price_sale;
+        data.stock = stock;
+
         $.ajax({
             type: 'POST',
             url: '/category/upd',

@@ -4,7 +4,8 @@
 Quản trị danh mục sản phẩm
 @endsection
 @section('content')
-<div class="container">
+<div>
+    {{--class = "container"--}}
     <h1>Quản trị danh mục sản phẩm</h1>
     <div style="margin: 20px 0">
         <label>Tên danh mục</label>
@@ -18,8 +19,8 @@ Quản trị danh mục sản phẩm
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Introduction</th>
                     <th>Desc</th>
+                    <th>Introduction</th>
                     <th>Image</th>
                     <th>Price_Core</th>
                     <th>Price_Sale</th>
@@ -32,17 +33,17 @@ Quản trị danh mục sản phẩm
                 <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <td scope="row">{{ $product['id']}}</td>
-                    <td><input type="text" value="{{$product['name']}}"></td>
-                    <td><input type="text" value="{{$product['intro']}}"></td>
-                    <td><input type="text" value="{{$product['desc']}}"></td>
-                    <td><input type="text" value="{{$product['image']}}"></td>
-                    <td><input type="text" value="{{$product['price_core']}}"></td>
-                    <td><input type="text" value="{{$product['price_sale']}}"></td>
-                    <td><input type="text" value="{{$product['stock']}}"></td>
+                    <td><input class="id" style="width: 40px" value="{{ $product['id']}}" disabled></td>
+                    <td><input class="name" type="text" value="{{$product['name']}}" ></td>
+                    <td><input class="desc" type="text" value="{{$product['desc']}}" ></td>
+                    <td><input class="intro" type="text" value="{{$product['intro']}}" ></td>
+                    <td><input class="image" type="text" value="{{$product['image']}}" ></td>
+                    <td><input class="price_core" type="text" value="{{$product['price_core']}}" ></td>
+                    <td><input class="price_sale" type="text" value="{{$product['price_sale']}}" ></td>
+                    <td><input class="stock" type="text" value="{{$product['stock']}}"></td>
                     <td>
-                        <a ProductId="{{ $product['id']}}" class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        <a UpdateProduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a productId="{{ $product['id']}} " class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -61,7 +62,7 @@ Quản trị danh mục sản phẩm
                 </thead>
                 <tbody>
                 <tr>
-                    <td scope="row"><input type="text" ></td>
+                    <td><input type="text" disabled style="width: 40px" ></td>
                     <td><input type="text"></td>
                     <td><input type="text"></td>
                     <td><input type="text"></td>
@@ -71,6 +72,7 @@ Quản trị danh mục sản phẩm
                     <td><input type="text"></td>
                     <td>
                         <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 </tbody>
