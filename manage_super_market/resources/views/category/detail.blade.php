@@ -32,8 +32,8 @@ Quản trị danh mục sản phẩm
                 <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <td scope="row"><input type="text" value="{{ $product['id']}}"></td>
-                    <td><input type="text" value="{{ $product['name']}}"></td>
+                    <td scope="row">{{ $product['id']}}</td>
+                    <td><input type="text" value="{{$product['name']}}"></td>
                     <td><input type="text" value="{{$product['intro']}}"></td>
                     <td><input type="text" value="{{$product['desc']}}"></td>
                     <td><input type="text" value="{{$product['image']}}"></td>
@@ -41,7 +41,8 @@ Quản trị danh mục sản phẩm
                     <td><input type="text" value="{{$product['price_sale']}}"></td>
                     <td><input type="text" value="{{$product['stock']}}"></td>
                     <td>
-                        <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a ProductId="{{ $product['id']}}" class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a UpdateProduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @endforeach

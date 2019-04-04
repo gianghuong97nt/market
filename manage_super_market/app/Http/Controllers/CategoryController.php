@@ -12,21 +12,21 @@ class CategoryController extends Controller
         try {
             $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_INQ01]');
             return view('category.index')
-                -> with('cats', $category[0])
-                -> with('abc', 100);
+                -> with('cats', $category[0]);
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
     }
 
-    public function create(){
-        $data = array();
-        return view('category.submit', $data);
-
-    }
+//    public function create(){
+//        $data = array();
+//        return view('category.submit', $data);
+//
+//    }
 
     public function detail($id){
+
         $paramas = array($id);
         try {
             $product  = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
@@ -43,59 +43,74 @@ class CategoryController extends Controller
         }
     }
 
-    public function edit($id){
-        $item = CategoryModel::find($id);
 
-        $data = array();
-        $data['cat'] = $item;
-        $data['id'] = $id;
-        return view('category.edit', $data);
-
-    }
-
-    public function delete($id){
-        $data = array();
-        $data['id'] = $id;
-        return view('category.delete', $data);
-
-    }
-
-    public function store(Request $request){
-
-        $name = $request->name;
-        $intro = $request->intro;
-        $desc = $request->desc;
-
-        $paramas = array($name,$intro,$desc);
+    public function delete(Request $request){
         try {
-            Dao::call_stored_procedure('[SPC_add_category_ACT01]',$paramas);
+            $param = $request->all();
 
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
+            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT1', $param);
+
+            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
+                $result = array(
+                    'status' => '202',
+                    'data' => $data[0],
+                );
+            } else if ($data[0][0]['Data'] != '') { //Data Validate
+                $result = array(
+                    'status' => '201',
+                    'data' => array($data[0]),
+                );
+            } else {// OK
+                $result = array(
+                    'status' => '200',
+                    'data' => '',
+                );
+            }
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => 'EX',
+                'data' => $e->getMessage(),
+            );
         }
 
-        return redirect('/category');
+        return response()->json($result);
     }
 
-    public function update(Request $request, $id){
-        $input = $request->all();
-        $item = CategoryModel::find($id);
+    public function upd(Request $request){
+        try {
+            $param = $request->all();
 
-        $item->name = $input['name'];
-        $item->slug = $input['slug'];
-        $item->images = $input['images'];
-        $item->intro = $input['intro'];
-        $item->desc = $input['desc'];
+            dump($param);die;
 
-        $item->save();
-        return redirect('/category');
+            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT02', $param);
+
+            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
+                $result = array(
+                    'status' => '202',
+                    'data' => $data[0],
+                );
+            } else if ($data[0][0]['Data'] != '') { //Data Validate
+                $result = array(
+                    'status' => '201',
+                    'data' => array($data[0]),
+                );
+            } else {// OK
+                $result = array(
+                    'status' => '200',
+                    'data' => '',
+                );
+            }
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => 'EX',
+                'data' => $e->getMessage(),
+            );
+        }
+
+        return response()->json($result);
     }
 
-    public function destroy($id){
-        $item = CategoryModel::find($id);
 
-        $item->delete();
-
-        return redirect('/category');
-    }
 }

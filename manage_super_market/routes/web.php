@@ -52,19 +52,24 @@ Route::post('/logout', 'LoginController@logout')->name('auth.logout');
 Route::get('/category', 'CategoryController@index')->name('category');
 Route::get('/category/create', 'CategoryController@create')->name('category.create');
 Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
-Route::get('/category/{id}/delete', 'CategoryController@delete')->name('category.delete');
+
+// Route xóa sản phẩm trong category
+Route::post('/category/del', 'CategoryController@delete')->name('category.delete');
 
 // Route lưu trữ dữ liệu danh mục khi tọa mới
 Route::post('/category', 'CategoryController@store')->name('category.store');
 
 //Route lưu trữ dữ liệu danh mục khi sửa
-Route::post('/category/{id}', 'CategoryController@update')->name('category.update');
+//Route::post('/category/{id}', 'CategoryController@update')->name('category.update');
 
 //Route lưu trữ dữ liệu dnah mục khi xóa
 Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 //Route chi tiết các sản phẩm nằm trong danh mục nào đó
 Route::get('/category/{id}/detail', 'CategoryController@detail')->name('category.detail');
+
+//Route update sản phẩm trong category
+Route::post('/category/upd', 'CategoryController@upd')->name('category.upd');
 
 
 

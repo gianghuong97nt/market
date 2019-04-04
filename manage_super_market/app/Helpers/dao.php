@@ -1,23 +1,23 @@
 <?php
-    /**
-    *-------------------------------------------------------------------------*
-    * Souei
-    * Helpers call procedue sql server
-    *
-    * 処理概要/process overview  :
-    * 作成日/create date         :   2016/10/20
-    * 作成者/creater             :   vuongvt – vuongvt@ans-asia.com
-    *
-    * @package                  :   MASTER
-    * @copyright                :   Copyright (c) ANS-ASIA
-    * @version                  :   1.0.0
-    *-------------------------------------------------------------------------*
-    * DESCRIPTION
-    *
-    *
-    *
-    *
-    */
+/**
+ *-------------------------------------------------------------------------*
+ * Souei
+ * Helpers call procedue sql server
+ *
+ * 処理概要/process overview  :
+ * 作成日/create date         :   2016/10/20
+ * 作成者/creater             :   vuongvt – vuongvt@ans-asia.com
+ *
+ * @package                  :   MASTER
+ * @copyright                :   Copyright (c) ANS-ASIA
+ * @version                  :   1.0.0
+ *-------------------------------------------------------------------------*
+ * DESCRIPTION
+ *
+ *
+ *
+ *
+ */
 namespace App\Helpers;
 use PDO,DB;
 class Dao{
@@ -28,7 +28,7 @@ class Dao{
     public function __construct() {
 
     }
-    
+
     /**
      * runs a stored procedure and returns results if any
      *--------------------------------------------
@@ -70,7 +70,7 @@ class Dao{
                 }
             }
 
-	        //write log
+            //write log
             if ($aParams == null || count($aParams) > 0) {
                 $debug_sql = $this_->interpolateQuery($sProcedure, $aParams);
             } else {
@@ -78,22 +78,22 @@ class Dao{
             }
             $log_path =  dirname ( __FILE__ ). DIRECTORY_SEPARATOR . '../..'. DIRECTORY_SEPARATOR . '/storage/logs/db';
 
-            
-	        if (!file_exists($log_path)) {
-		        if (!mkdir($log_path, 0777, true)) {
-			        die("Failed to create folder $log_path");
-		        }
-	        }
-	        $file_name = date("Ymd");
-	        $time = date("Y-m-d H:i:s");
-	        $file_path = $log_path . DIRECTORY_SEPARATOR . $file_name . '.log';
-            //var_dump($file_path);die;
-	        file_put_contents($file_path, $time . ' ' . $debug_sql . PHP_EOL, FILE_APPEND);
 
-	        //    Debug
-	        if($debug){
-		        echo $this_->debugQuery($sProcedure, $aParams);
-	        }
+            if (!file_exists($log_path)) {
+                if (!mkdir($log_path, 0777, true)) {
+                    die("Failed to create folder $log_path");
+                }
+            }
+            $file_name = date("Ymd");
+            $time = date("Y-m-d H:i:s");
+            $file_path = $log_path . DIRECTORY_SEPARATOR . $file_name . '.log';
+            //var_dump($file_path);die;
+            file_put_contents($file_path, $time . ' ' . $debug_sql . PHP_EOL, FILE_APPEND);
+
+            //    Debug
+            if($debug){
+                echo $this_->debugQuery($sProcedure, $aParams);
+            }
 
             // execute the stored procedure
             $stmt->execute();
@@ -120,12 +120,12 @@ class Dao{
                 $i++;
             } while ($stmt->nextRowset());
 
-         }catch (\Exception $e) {
+        }catch (\Exception $e) {
             $result[0][0] = array(
-                    'Id'      => '',
-                    'Code'    => $e->getCode(),
-                    'Data'    => self::EXCEPTION,
-                    'Message' => 'PHP: '.$e->getMessage()
+                'Id'      => '',
+                'Code'    => $e->getCode(),
+                'Data'    => self::EXCEPTION,
+                'Message' => 'PHP: '.$e->getMessage()
             );
             // Write log error
             $log_path =   dirname ( __FILE__ ). DIRECTORY_SEPARATOR . '../..'. DIRECTORY_SEPARATOR . '/storage/logs/db';
