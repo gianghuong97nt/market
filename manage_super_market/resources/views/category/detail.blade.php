@@ -43,7 +43,7 @@ Quản trị danh mục sản phẩm
                     <td><input class="stock" type="text" value="{{$product['stock']}}"></td>
                     <td>
                         <a productId="{{ $product['id']}} " class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        <a updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a href="index.blade.php" updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -62,14 +62,14 @@ Quản trị danh mục sản phẩm
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" disabled style="width: 40px" ></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
+                    <td><input class="id" id="id" style="width: 40px"  disabled></td>
+                    <td><input class="name" type="text" ></td>
+                    <td><input class="desc" type="text" ></td>
+                    <td><input class="intro" type="text"></td>
+                    <td><input class="image" type="text"></td>
+                    <td><input class="price_core" type="text"></td>
+                    <td><input class="price_sale" type="text" ></td>
+                    <td><input class="stock" type="text"></td>
                     <td>
                         <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         <a class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>

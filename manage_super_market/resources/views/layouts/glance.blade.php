@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html>
+
 <!--head-->
 @include('partials.head');
 <!--end head-->
@@ -34,6 +35,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 @include('partials.main');
 <!-- //Bootstrap Core JavaScript -->
-
+@yield('tag')
 </body>
 </html>

@@ -50,7 +50,7 @@ Route::post('/logout', 'LoginController@logout')->name('auth.logout');
 // Route quản lý danh mục sản phẩm
 
 Route::get('/category', 'CategoryController@index')->name('category');
-Route::get('/category/create', 'CategoryController@create')->name('category.create');
+//Route::get('/category/create', 'CategoryController@create')->name('category.create');
 Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
 
 // Route xóa sản phẩm trong category
@@ -68,8 +68,15 @@ Route::post('/category/destroy/{id}', 'CategoryController@destroy')->name('categ
 //Route chi tiết các sản phẩm nằm trong danh mục nào đó
 Route::get('/category/{id}/detail', 'CategoryController@detail')->name('category.detail');
 
+
 //Route update sản phẩm trong category
 Route::post('/category/upd', 'CategoryController@upd')->name('category.upd');
+
+//Route load danh muc
+Route::get('/category/load', 'CategoryController@load')->name('category.load');
+
+
+
 
 //Route quản lý sản phẩm
 Route::get('/product', 'ProductController@index')->name('product');

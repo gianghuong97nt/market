@@ -225,6 +225,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PaggingHelper' => App\Helpers\PaggingHelper::class,
+//        'Button' => App\Helpers\Button::class,
+        'Paging' => App\Helpers\Paging::class,
 
     ],
 

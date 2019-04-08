@@ -11,10 +11,26 @@ class CategoryController extends Controller
     //
     public function index(){
         try {
+
             $category = Dao::call_stored_procedure('[SPC_GET_CATEGORY_INQ01]');
             return view('category.index')
-                -> with('cats', $category[0]);
+                -> with('cats', $category[0])
+                -> with('paging', $category[1][0]);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
+    }
 
+    public function load(Request $request){
+        try {
+
+            $page = $request->page;
+
+            $params = array(4,$page);
+            $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ01',$params);
+
+            return view('category.index_pagination')
+                -> with('cats', $category[0]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
@@ -33,8 +49,6 @@ class CategoryController extends Controller
             $product  = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
             $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ02',$paramas);
 
-//            var_dump($category);
-//            die;
             return view('category.detail')
                 -> with('products', $product[0])
                 -> with('cat',$category[0]);
@@ -56,7 +70,7 @@ class CategoryController extends Controller
                     'status' => '202',
                     'data' => $data[0],
                 );
-            } else if ($data[0][0]['Data'] != '') { //Data Validate
+            } else if ($data[0][0]['Data'] != '') {
                 $result = array(
                     'status' => '201',
                     'data' => array($data[0]),
@@ -78,12 +92,11 @@ class CategoryController extends Controller
         return response()->json($result);
     }
 
+
+
     public function upd(Request $request){
         try {
             $param = $request->all();
-            var_dump($param);
-            die;
-
 
             $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT02', $param);
 

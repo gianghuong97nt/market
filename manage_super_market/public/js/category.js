@@ -3,18 +3,22 @@
 
 $(document).ready(function () {
     initEvents();
+    pagination();
 });
 
 function initEvents() {
     //add row project member
     $(document).on('click','#btn-add-row-1',function () {
         try {
-            var row = $("#main_row_1 tbody tr:first").clone();
+            //var row = $("#main_row_1 tbody tr:first").clone();
+            var row = $("#main_row_1 tbody tr").clone();
+            // $('#id').attr('value','');
             $('#table-data-1 tbody').append(row);
         } catch (e) {
             alert('add new row' + e.message);
         }
     });
+
 
     $(document).on('click', '.btn-remove-row-1', function () {
         try {
@@ -41,8 +45,17 @@ function initEvents() {
             alert('update row ' + e.message);
         }
     });
-
+    //change_key
+    $(document).on('click', '.pagination-location li a', function () {
+        try {
+            var page = $(this).attr('page');
+            Search(page);
+        } catch (e) {
+            alert('.pagination li' + e.message);
+        }
+    });
 }
+
 
 function deleteProduct(product_id) {
     try {
@@ -145,6 +158,32 @@ function updateProduct(element) {
         });
     } catch (e) {
         alert('update' + e.message);
+    }
+
+}
+
+function Search(page) {
+    try {
+        var data = {};
+        data.page = page;
+
+        $.ajax({
+            type: 'GET',
+            url: '/category/load',
+            dataType: 'html',
+            loading: true,
+            data: data,
+
+            success: function (res) {
+                $("#pagination").html(res);
+            },
+            // Ajax error
+            error: function (res) {
+            }
+
+        });
+    } catch (e) {
+        alert('save' + e.message);
     }
 
 }
