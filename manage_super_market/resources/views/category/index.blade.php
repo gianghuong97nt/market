@@ -1,6 +1,6 @@
 @extends('layouts.glance')
 @section('tag')
-    <script src="{{ asset('js/ajax.js') }}"></script>
+
     <script src="{{ asset('js/category.js') }}"></script>
 @endsection
 @section('title')

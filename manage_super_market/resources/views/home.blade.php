@@ -1,6 +1,11 @@
 @extends('layouts.glance')
 
+@section('tag')
+    <script src="{{ asset('js/logout.js') }}"></script>
+@endsection
+
 @section('content')
+    {{$users}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -18,4 +23,5 @@
             </div>
         </div>
     </div>
+   <button id="logout">Logout</button>
 @endsection

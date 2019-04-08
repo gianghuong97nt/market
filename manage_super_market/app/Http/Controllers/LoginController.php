@@ -36,15 +36,24 @@ class LoginController extends Controller
         $get_user = Dao::call_stored_procedure('SPC_get_users_ACT01',$params);
 
 
-//        var_dump( $get_user[0][0]['error']);
+//        var_dump( $get_user[1][0]['username']);
 //        exit;
 
+        session([
+            'users'=>$get_user[1][0]['username'],
+        ]);
+////
+
+//        session_start();
         if((isset($get_user[0][0]['result'])?$get_user[0][0]['result']:'') == 'ok'){
+
             return redirect()->intended(route('home'));
         }
         else{
             return redirect()->intended(route('auth.login'));
         }
+
+
 
 
     }
@@ -53,7 +62,6 @@ class LoginController extends Controller
      * Phương thức đăng xuất
      */
     public function logout(){
-        Auth::guard('admin')->logout();
         return redirect()->route('auth.login');
     }
 }
