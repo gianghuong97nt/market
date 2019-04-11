@@ -8,7 +8,7 @@ use App\Helpers\Dao;
 
 class CategoryController extends Controller
 {
-    //
+    //hiện thị trang danh mục sản phẩm, mặc định là trang đầu tiên
     public function index(){
         try {
 
@@ -21,11 +21,10 @@ class CategoryController extends Controller
         }
     }
 
+    //load các danh mục cảu các trang
     public function load(Request $request){
         try {
-
             $page = $request->page;
-
             $params = array(4,$page);
             $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ01',$params);
 
@@ -36,23 +35,35 @@ class CategoryController extends Controller
         }
     }
 
-//    public function create(){
-//        $data = array();
-//        return view('category.submit', $data);
-//
-//    }
-
+    //hiện thị trang chi tiết sản phẩm, mặc định là trang đầu tiên
     public function detail($id){
 
-        $paramas = array($id);
+        $params = array($id,4,1);
+        $data   = array($id);
         try {
-            $product  = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$paramas);
-            $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ02',$paramas);
+            $product  = Dao::call_stored_procedure('[SPC_GET_CATEGORY_PRODUCT_INQ01]',$params);
+            $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ02',$data);
 
             return view('category.detail')
+                -> with('cat',$category[0])
                 -> with('products', $product[0])
-                -> with('cat',$category[0]);
+                -> with('paging', $product[1][0]);
 
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
+    }
+
+
+    //load các sản phẩm của các trang
+    public function loadProduct(Request $request , $id){
+        try {
+            $page = $request->page;
+            $params = array($id, 4,$page);
+            $product = Dao::call_stored_procedure('SPC_GET_CATEGORY_PRODUCT_INQ01',$params);
+
+            return view('product.index_pagination')
+                -> with('products', $product[0]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }

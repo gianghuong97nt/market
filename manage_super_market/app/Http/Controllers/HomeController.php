@@ -19,18 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $a = $_SESSION['username'];
-//        echo $a;
-//        die;
-        $name=session()->get('users');
+//        $name=session()->get('users');
 
-        return view('home')
-            ->with('users',$name);
+        return view('home');
+//            ->with('users',$name);
     }
 
-    public function logout(Request $request){
-        $request->session()->flush();
-
-        return redirect()->intended(route('auth.login'));
-    }
 }

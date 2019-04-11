@@ -1,0 +1,47 @@
+
+'use strict';
+
+$(document).ready(function () {
+    initEvents();
+});
+
+function initEvents() {
+    //change_key
+    $(document).on('click', '.pagination-location li a', function () {
+        try {
+            alert(1);
+            var page = $(this).attr('page');
+            Search(page);
+        } catch (e) {
+            alert('.pagination li' + e.message);
+        }
+    });
+
+}
+
+function Search(page) {
+    try {
+        var data = {};
+        data.page = page;
+
+        $.ajax({
+            type: 'GET',
+            url: '/category/load',
+            dataType: 'html',
+            loading: true,
+            data: data,
+
+            success: function (res) {
+                $("#pagination").html(res);
+            },
+            // Ajax error
+            error: function (res) {
+            }
+
+        });
+    } catch (e) {
+        alert('panigation' + e.message);
+    }
+
+}
+

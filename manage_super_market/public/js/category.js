@@ -3,7 +3,6 @@
 
 $(document).ready(function () {
     initEvents();
-    pagination();
 });
 
 function initEvents() {
@@ -46,10 +45,20 @@ function initEvents() {
         }
     });
     //change_key
+    // $(document).on('click', '.pagination-location li a', function () {
+    //     try {
+    //         var page = $(this).attr('page');
+    //         Search(page);
+    //     } catch (e) {
+    //         alert('.pagination li' + e.message);
+    //     }
+    // });
+
     $(document).on('click', '.pagination-location li a', function () {
         try {
+            alert(1);
             var page = $(this).attr('page');
-            Search(page);
+            SearchProduct(page);
         } catch (e) {
             alert('.pagination li' + e.message);
         }
@@ -183,7 +192,32 @@ function Search(page) {
 
         });
     } catch (e) {
-        alert('save' + e.message);
+        alert('panigation' + e.message);
+    }
+
+}
+function SearchProduct(page) {
+    try {
+        var data = {};
+        data.page = page;
+
+        $.ajax({
+            type: 'GET',
+            url: '/product/load',
+            dataType: 'html',
+            loading: true,
+            data: data,
+
+            success: function (res) {
+                $("#pagination_product").html(res);
+            },
+            // Ajax error
+            error: function (res) {
+            }
+
+        });
+    } catch (e) {
+        alert('pagination' + e.message);
     }
 
 }

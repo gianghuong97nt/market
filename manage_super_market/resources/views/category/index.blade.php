@@ -1,7 +1,7 @@
 @extends('layouts.glance')
 @section('tag')
 
-    <script src="{{ asset('js/category.js') }}"></script>
+    <script src="{{ asset('js/cat_pagination.js') }}"></script>
 @endsection
 @section('title')
     Quản trị danh mục sản phẩm
@@ -32,22 +32,13 @@
                             <td><a href="{{ url('/category/'.$cat['id'].'/detail') }}">{{$cat['name']}}</a></td>
                             <td>{{$cat['intro']}}</td>
                             <td>{{$cat['desc']}}</td>
-                            {{--<td>--}}
-                                {{--<a class="btn btn-warning" id="btn-add-row-1">Thêm</a>--}}
-                                {{--<a class="btn btn-danger btn-remove-row-1">Xóa</a>--}}
-                            {{--</td>--}}
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-
-
-
             </div>
+
             <div class="col-md-12">
-                {{--<div class="col-md-2" style="margin-top: 30px;">--}}
-                {{--<label class="lbl-item">Total: {{$data[1][0]['totalRecord']}} records </label>--}}
-                {{--</div>--}}
                 <div class="mt-15 panel-footer-search pull-right">
                     {!!Paging::show($paging,0)!!}
                 </div>

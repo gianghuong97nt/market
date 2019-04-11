@@ -3,6 +3,9 @@
 @section('title')
 Quản trị danh mục sản phẩm
 @endsection
+@section('tag')
+    <script src="{{ asset('js/category.js') }}"></script>
+@endsection
 @section('content')
 <div>
     {{--class = "container"--}}
@@ -12,7 +15,7 @@ Quản trị danh mục sản phẩm
         <input type="text" value="{{$cat[0]['name']}}">
     </div>
     <div class="tables">
-        <div class="table-responsive bs-example widget-shadow">
+        <div class="table-responsive bs-example widget-shadow" id="pagination_product">
             <h4>Tổng số :</h4>
             <table class="table table-bordered" id="table-data-1">
                 <thead>
@@ -43,7 +46,7 @@ Quản trị danh mục sản phẩm
                     <td><input class="stock" type="text" value="{{$product['stock']}}"></td>
                     <td>
                         <a productId="{{ $product['id']}} " class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        <a href="index.blade.php" updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -78,8 +81,12 @@ Quản trị danh mục sản phẩm
                 </tbody>
             </table>
         </div>
+        <div class="col-md-12">
+            <div class="mt-15 panel-footer-search pull-right">
+                {!!Paging::show($paging,0)!!}
+            </div>
+        </div>
     </div>
 </div>
 
-<script src="{{ asset('js/category.js') }}"></script>
 @endsection

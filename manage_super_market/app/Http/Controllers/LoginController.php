@@ -42,7 +42,6 @@ class LoginController extends Controller
         session([
             'users'=>$get_user[1][0]['username'],
         ]);
-////
 
 //        session_start();
         if((isset($get_user[0][0]['result'])?$get_user[0][0]['result']:'') == 'ok'){
@@ -52,16 +51,13 @@ class LoginController extends Controller
         else{
             return redirect()->intended(route('auth.login'));
         }
-
-
-
-
     }
 
     /**
      * Phương thức đăng xuất
      */
-    public function logout(){
+    public function logout(Request $request){
+        $request->session()->flush();
         return redirect()->route('auth.login');
     }
 }

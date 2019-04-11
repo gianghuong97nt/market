@@ -3,17 +3,16 @@ $(document).ready(function () {
         try {
             logout();
         } catch (e) {
-            alert('remove row ' + e.message);
+            alert('logout row ' + e.message);
         }
     });
 });
 
 function logout() {
     try {
-
         $.ajax({
             type: 'GET',
-            url: '/home/logout',
+            url: '/logout',
             dataType: 'json',
             loading: true,
         });

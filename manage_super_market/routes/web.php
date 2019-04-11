@@ -17,8 +17,6 @@ Route::get('/login', function () {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/logout', 'HomeController@logout')->name('home.logout');
-
 
 
 Route::get('/register', 'AdminController@create')->name('register');
@@ -41,7 +39,7 @@ Route::post('/login', 'LoginController@loginAdmin')->name('auth.loginAdmin');
 /**
  * Route dùng để đăng xuất
  */
-Route::post('/logout', 'LoginController@logout')->name('auth.logout');
+Route::get('/logout', 'LoginController@logout')->name('auth.logout');
 
 
 /**
@@ -93,3 +91,4 @@ Route::post('/product/{id}', 'ProductController@update')->name('product.update')
 
 //Route lưu trữ dữ liệu sản phẩm khi xóa
 Route::post('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
+Route::get('/product/load', 'CategoryController@loadProduct')->name('product.load');
