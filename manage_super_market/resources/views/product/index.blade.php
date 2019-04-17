@@ -27,27 +27,27 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                     @foreach($products as $product)
-                    <tr>
-                        <th scope="row">{{$product['id']}}</th>
-                        <td>{{$product['name']}}</td>
-                        <td>{{$product['category']}}</td>
-                        <td>{{$product['desc']}}</td>
-                        <td>{{$product['price_core']}}</td>
-                        <td>{{$product['price_sale']}}</td>
-                        <td>{{$product['image']}}</td>
-                        <td>{{$product['stock']}}</td>
-                        {{--<td>--}}
-                        {{--<a class="btn btn-warning" id="btn-add-row-1">Thêm</a>--}}
-                        {{--<a class="btn btn-danger btn-remove-row-1">Xóa</a>--}}
-                        {{--</td>--}}
-                        <td>
-                            <a href="{{url('product/'.$product['id'].'/edit')}}" class="btn btn-warning">Sửa</a>
-                            <a href="{{url('product/'.$product['id'].'/delete')}}" class="btn btn-danger">Xóa</a>
-                        </td>
-                    </tr>
-                        @endforeach
+                        <tr>
+                            <th scope="row">{{$product['id']}}</th>
+                            <td>{{$product['name']}}</td>
+                            <td>{{$product['category']}}</td>
+                            <td>{{$product['desc']}}</td>
+                            <td>{{$product['price_core']}}</td>
+                            <td>{{$product['price_sale']}}</td>
+                            <td>{{$product['image']}}</td>
+                            <td>{{$product['stock']}}</td>
+                            {{--<td>--}}
+                            {{--<a class="btn btn-warning" id="btn-add-row-1">Thêm</a>--}}
+                            {{--<a class="btn btn-danger btn-remove-row-1">Xóa</a>--}}
+                            {{--</td>--}}
+                            <td>
+                                <a href="{{url('product/'.$product['id'].'/edit')}}" class="btn btn-warning">Sửa</a>
+                                <a href="{{url('product/'.$product['id'].'/delete')}}" class="btn btn-danger">Xóa</a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 

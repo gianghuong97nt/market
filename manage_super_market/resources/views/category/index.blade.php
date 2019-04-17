@@ -14,7 +14,7 @@
             <a class="btn btn-success">Thêm danh mục</a>
         </div>
         <div class="tables">
-            <div class="table-responsive bs-example widget-shadow" id="pagination">
+            <div class="table-responsive bs-example widget-shadow" >
                 <h4>Tổng số :</h4>
                 <table class="table table-bordered" id="table-data-1">
                     <thead>
@@ -25,7 +25,7 @@
                         <th>Desc</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="body_data">
                     @foreach ($cats as $cat)
                         <tr>
                             <td scope="row">{{ $cat['id']}}</td>

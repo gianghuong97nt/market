@@ -9,6 +9,7 @@ function initEvents() {
     //add row project member
     $(document).on('click','#btn-add-row-1',function () {
         try {
+            debugger;
             //var row = $("#main_row_1 tbody tr:first").clone();
             var row = $("#main_row_1 tbody tr").clone();
             // $('#id').attr('value','');
@@ -56,9 +57,11 @@ function initEvents() {
 
     $(document).on('click', '.pagination-location li a', function () {
         try {
-            alert(1);
             var page = $(this).attr('page');
-            SearchProduct(page);
+            //lấy cha của đối tượng đang thao tác
+            var _this = $(this).closest('.pagination_product');
+            var cat_id = $(_this).attr('catid');
+            SearchProduct(page, cat_id);
         } catch (e) {
             alert('.pagination li' + e.message);
         }
@@ -113,7 +116,7 @@ function deleteProduct(product_id) {
 function updateProduct(element) {
     try {
         var data = {};
-        var _this =element;
+        var _this = element;
         var id         = _this.find('.id').val();
         var name       = _this.find('.name').val();
         var image      = _this.find('.image').val();
@@ -184,7 +187,9 @@ function Search(page) {
             data: data,
 
             success: function (res) {
-                $("#pagination").html(res);
+                $("#body_data").empty();
+                $("#body_data").html(res);
+                //$("#pagination").html(res);
             },
             // Ajax error
             error: function (res) {
@@ -196,10 +201,11 @@ function Search(page) {
     }
 
 }
-function SearchProduct(page) {
+function SearchProduct(page,cat_id) {
     try {
         var data = {};
         data.page = page;
+        data.cat_id = cat_id;
 
         $.ajax({
             type: 'GET',
@@ -209,10 +215,13 @@ function SearchProduct(page) {
             data: data,
 
             success: function (res) {
-                $("#pagination_product").html(res);
+                //$("#pagination_product").html(res);
+                $("#product_data").empty();
+                $("#product_data").html(res);
             },
             // Ajax error
             error: function (res) {
+                alert('loi');
             }
 
         });

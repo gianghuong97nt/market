@@ -91,4 +91,13 @@ Route::post('/product/{id}', 'ProductController@update')->name('product.update')
 
 //Route lưu trữ dữ liệu sản phẩm khi xóa
 Route::post('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
+//Route load trang sản phẩm
 Route::get('/product/load', 'CategoryController@loadProduct')->name('product.load');
+
+
+//Route insert duwx lieeuj
+Route::get('/list/insert', 'ListController@listInsert')->name('list');
+//Route upadte list
+Route::post('/list/update', 'ListController@update')->name('list.update');
+//Route bay ve trang list
+Route::get('/list', 'ListController@index')->name('list.index');

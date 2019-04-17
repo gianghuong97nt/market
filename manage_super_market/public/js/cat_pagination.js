@@ -9,7 +9,6 @@ function initEvents() {
     //change_key
     $(document).on('click', '.pagination-location li a', function () {
         try {
-            alert(1);
             var page = $(this).attr('page');
             Search(page);
         } catch (e) {
@@ -32,7 +31,8 @@ function Search(page) {
             data: data,
 
             success: function (res) {
-                $("#pagination").html(res);
+                $("#body_data").empty();
+                $("#body_data").html(res);
             },
             // Ajax error
             error: function (res) {

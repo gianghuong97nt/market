@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    $(document).on('click', '#logout', function () {
+    $(document).on('click', '#back', function () {
         try {
-            logout();
+            back();
         } catch (e) {
             alert('logout row ' + e.message);
         }
     });
 });
 
-function logout() {
+function back() {
     try {
-        location.href = '/login';
+        location.href = '/list/insert';
     } catch (e) {
         alert('save' + e.message);
     }

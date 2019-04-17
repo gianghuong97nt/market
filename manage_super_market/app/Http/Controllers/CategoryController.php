@@ -56,10 +56,12 @@ class CategoryController extends Controller
 
 
     //load các sản phẩm của các trang
-    public function loadProduct(Request $request , $id){
+    public function loadProduct(Request $request){
         try {
             $page = $request->page;
-            $params = array($id, 4,$page);
+            $cat_id = $request->cat_id;
+            $params = array($cat_id, 4,$page);
+
             $product = Dao::call_stored_procedure('SPC_GET_CATEGORY_PRODUCT_INQ01',$params);
 
             return view('product.index_pagination')

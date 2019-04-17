@@ -13,6 +13,7 @@ Quản trị danh mục sản phẩm
     <div style="margin: 20px 0">
         <label>Tên danh mục</label>
         <input type="text" value="{{$cat[0]['name']}}">
+        <input hidden value="{{$cat[0]['id']}}">
     </div>
     <div class="tables">
         <div class="table-responsive bs-example widget-shadow" id="pagination_product">
@@ -33,7 +34,7 @@ Quản trị danh mục sản phẩm
                     </th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="product_data">
                 @foreach ($products as $product)
                 <tr>
                     <td><input class="id" style="width: 40px" value="{{ $product['id']}}" disabled></td>
@@ -82,7 +83,7 @@ Quản trị danh mục sản phẩm
             </table>
         </div>
         <div class="col-md-12">
-            <div class="mt-15 panel-footer-search pull-right">
+            <div class="mt-15 panel-footer-search pull-right pagination_product" catID = "{{$cat[0]['id']}}">
                 {!!Paging::show($paging,0)!!}
             </div>
         </div>

@@ -45,7 +45,7 @@ class Paging
             $strpage .= self::_showPage($page['page'], $page['pageMax'], $page['totalRecord']);
         } else {
             $strpage = '<label class="panel-title inline-block"></label>';
-            $strpage .= '<ul class="pagination pagination-xs pagination-location">';
+            $strpage .= '<ul class="pagination pagination-xs pagination-location" >';
             $strpage .= '   <li class="pagging-disable"><a href=""><i class="fa fa-caret-left"></i></a></li>';
             $strpage .= '   <li class="active"><a href="">1</a></li>';
             $strpage .= '   <li class="pagging-disable"><a href=""><i class="fa fa-caret-right"></i></a></li>';
