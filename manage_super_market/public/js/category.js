@@ -9,7 +9,7 @@ function initEvents() {
     //add row project member
     $(document).on('click','#btn-add-row-1',function () {
         try {
-            debugger;
+            //debugger;
             //var row = $("#main_row_1 tbody tr:first").clone();
             var row = $("#main_row_1 tbody tr").clone();
             // $('#id').attr('value','');
@@ -76,8 +76,8 @@ function deleteProduct(product_id) {
 
         $.ajax({
             type: 'POST',
-            url: '/category/del',
-            dataType: 'json',  //html
+            url: '/product/delete',
+            dataType: 'json',
             loading: true,
             data: data,
             ///
@@ -112,12 +112,12 @@ function deleteProduct(product_id) {
 
 }
 
-
 function updateProduct(element) {
     try {
         var data = {};
         var _this = element;
         var id         = _this.find('.id').val();
+        var cat_id     = _this.find('.cat_id').val();
         var name       = _this.find('.name').val();
         var image      = _this.find('.image').val();
         var intro      = _this.find('.intro').val();
@@ -128,6 +128,7 @@ function updateProduct(element) {
 
 
         data.product_id = id;
+        data.cat_id     = cat_id;
         data.name = name;
         data.image = image;
         data.intro = intro;
@@ -138,7 +139,7 @@ function updateProduct(element) {
 
         $.ajax({
             type: 'POST',
-            url: '/category/upd',
+            url: '/product/update',
             dataType: 'json',  //html
             loading: true,
             data: data,

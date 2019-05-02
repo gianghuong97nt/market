@@ -40,7 +40,7 @@ function Search(page) {
 
         });
     } catch (e) {
-        alert('panigation' + e.message);
+        alert('pagination' + e.message);
     }
 
 }

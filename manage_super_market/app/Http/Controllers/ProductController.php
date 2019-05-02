@@ -19,75 +19,85 @@ class ProductController extends Controller
         }
     }
 
-    public function create(){
-        $cats = CategoryModel::all();
-        $data = array();
-        $data['cats'] = $cats;
-        return view('product.submit', $data);
+    // update sản phẩm id exists then update (insert)
+    public function update(Request $request){
+        try {
+            $param = $request->all();
 
+            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT02', $param);
+
+            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
+                $result = array(
+                    'status' => '202',
+                    'data' => $data[0],
+                );
+            } else if ($data[0][0]['Data'] != '') { //Data Validate
+                $result = array(
+                    'status' => '201',
+                    'data' => array($data[0]),
+                );
+            } else {// OK
+                $result = array(
+                    'status' => '200',
+                    'data' => '',
+                );
+            }
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => 'EX',
+                'data' => $e->getMessage(),
+            );
+        }
+
+        return response()->json($result);
     }
 
-    public function edit($id){
-        $item = ProductModel::find($id);
-        $cats = CategoryModel::all();
+    public function delete(Request $request){
+        try {
+            $param = $request->all();
 
-        $data = array();
-        $data['product'] = $item;
-        $data['cats'] = $cats;
-        $data['id'] = $id;
-        return view('product.edit', $data);
+            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT1', $param);
 
+            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
+                $result = array(
+                    'status' => '202',
+                    'data' => $data[0],
+                );
+            } else if ($data[0][0]['Data'] != '') {
+                $result = array(
+                    'status' => '201',
+                    'data' => array($data[0]),
+                );
+            } else {// OK
+                $result = array(
+                    'status' => '200',
+                    'data' => '',
+                );
+            }
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => 'EX',
+                'data' => $e->getMessage(),
+            );
+        }
+
+        return response()->json($result);
     }
 
-    public function delete($id){
-        $data = array();
-        $data['id'] = $id;
-        return view('product.delete', $data);
+    public function load(Request $request){
+        try {
+            $page = $request->page;
+            $cat_id = $request->cat_id;
+            $params = array($cat_id, 4,$page);
 
-    }
+            $product = Dao::call_stored_procedure('SPC_GET_CATEGORY_PRODUCT_INQ01',$params);
 
-    public function store(Request $request){
-        $input = $request->all();
-
-        $item = new ProductModel();
-
-        $item->name = $input['name'];
-        $item->slug = $input['slug'];
-        $item->images = $input['images'];
-        $item->intro = $input['intro'];
-        $item->desc = $input['desc'];
-        $item->priceCore = $input['priceCore'];
-        $item->priceSale = $input['priceSale'];
-        $item->stock = $input['stock'];
-        $item->cat_id = $input['cat_id'];
-
-        $item->save();
-        return redirect('/product');
-    }
-
-    public function update(Request $request, $id){
-        $input = $request->all();
-        $item = ProductModel::find($id);
-
-        $item->name = $input['name'];
-        $item->slug = $input['slug'];
-        $item->images = $input['images'];
-        $item->intro = $input['intro'];
-        $item->desc = $input['desc'];
-        $item->priceCore = $input['priceCore'];
-        $item->priceSale = $input['priceSale'];
-        $item->stock = $input['stock'];
-        $item->cat_id = $input['cat_id'];
-
-        $item->save();
-        return redirect('/product');
-    }
-
-    public function destroy($id){
-        $item = ProductModel::find($id);
-
-        $item->delete();
-
-        return redirect('/product');
+            return view('product.search')
+                -> with('products', $product[0]);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
     }
 }

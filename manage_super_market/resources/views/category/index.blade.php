@@ -1,7 +1,7 @@
 @extends('layouts.glance')
 @section('tag')
 
-    <script src="{{ asset('js/cat_pagination.js') }}"></script>
+    <script src="{{ asset('js/search_cat.js') }}"></script>
 @endsection
 @section('title')
     Quản trị danh mục sản phẩm

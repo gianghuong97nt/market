@@ -13,7 +13,6 @@ Quản trị danh mục sản phẩm
     <div style="margin: 20px 0">
         <label>Tên danh mục</label>
         <input type="text" value="{{$cat[0]['name']}}">
-        <input hidden value="{{$cat[0]['id']}}">
     </div>
     <div class="tables">
         <div class="table-responsive bs-example widget-shadow" id="pagination_product">
@@ -21,6 +20,7 @@ Quản trị danh mục sản phẩm
             <table class="table table-bordered" id="table-data-1">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Desc</th>
@@ -37,6 +37,7 @@ Quản trị danh mục sản phẩm
                 <tbody id="product_data">
                 @foreach ($products as $product)
                 <tr>
+                    <td><input hidden class="cat_id" value="{{$cat[0]['id']}}"></td>
                     <td><input class="id" style="width: 40px" value="{{ $product['id']}}" disabled></td>
                     <td><input class="name" type="text" value="{{$product['name']}}" ></td>
                     <td><input class="desc" type="text" value="{{$product['desc']}}" ></td>
@@ -44,7 +45,7 @@ Quản trị danh mục sản phẩm
                     <td><input class="image" type="text" value="{{$product['image']}}" ></td>
                     <td><input class="price_core" type="text" value="{{$product['price_core']}}" ></td>
                     <td><input class="price_sale" type="text" value="{{$product['price_sale']}}" ></td>
-                    <td><input class="stock" type="text" value="{{$product['stock']}}"></td>
+                    <td><input class="stock" type="text" style="width: 50px" value="{{$product['stock']}}"></td>
                     <td>
                         <a productId="{{ $product['id']}} " class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         <a updateproduct="{{ $product['id']}}" class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -57,6 +58,7 @@ Quản trị danh mục sản phẩm
             <table class="table table-bordered hidden" id="main_row_1">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Introduction</th>
@@ -66,14 +68,15 @@ Quản trị danh mục sản phẩm
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input class="id" id="id" style="width: 40px"  disabled></td>
+                    <td><input hidden class="cat_id" value="{{$cat[0]['id']}}"></td>
+                    <td><input class="id" id="id" style="width: 40px" value="0" hidden></td>
                     <td><input class="name" type="text" ></td>
                     <td><input class="desc" type="text" ></td>
                     <td><input class="intro" type="text"></td>
                     <td><input class="image" type="text"></td>
                     <td><input class="price_core" type="text"></td>
                     <td><input class="price_sale" type="text" ></td>
-                    <td><input class="stock" type="text"></td>
+                    <td><input class="stock" type="text" style="width: 50px"></td>
                     <td>
                         <a class="btn btn-danger btn-remove-row-1"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         <a class="btn btn-warning btn-update-row-1"><i class="fa fa-pencil" aria-hidden="true"></i></a>

@@ -55,6 +55,8 @@ class LoginController extends Controller
 
     /**
      * Phương thức đăng xuất
+     * Xóa hết các session trong phiên làm việc hiện tại
+     * Redirect login
      */
     public function logout(Request $request){
         $request->session()->flush();

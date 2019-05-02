@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use App\Helpers\Dao;
 
@@ -21,14 +20,14 @@ class CategoryController extends Controller
         }
     }
 
-    //load các danh mục cảu các trang
+    //load các danh mục của các trang
     public function load(Request $request){
         try {
             $page = $request->page;
             $params = array(4,$page);
             $category = Dao::call_stored_procedure('SPC_GET_CATEGORY_INQ01',$params);
 
-            return view('category.index_pagination')
+            return view('category.search')
                 -> with('cats', $category[0]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
@@ -64,81 +63,11 @@ class CategoryController extends Controller
 
             $product = Dao::call_stored_procedure('SPC_GET_CATEGORY_PRODUCT_INQ01',$params);
 
-            return view('product.index_pagination')
+            return view('product.search')
                 -> with('products', $product[0]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
     }
-
-
-    public function delete(Request $request){
-        try {
-            $param = $request->all();
-
-            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT1', $param);
-
-            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
-                $result = array(
-                    'status' => '202',
-                    'data' => $data[0],
-                );
-            } else if ($data[0][0]['Data'] != '') {
-                $result = array(
-                    'status' => '201',
-                    'data' => array($data[0]),
-                );
-            } else {// OK
-                $result = array(
-                    'status' => '200',
-                    'data' => '',
-                );
-            }
-
-        } catch (Exception $e) {
-            $result = array(
-                'status' => 'EX',
-                'data' => $e->getMessage(),
-            );
-        }
-
-        return response()->json($result);
-    }
-
-
-
-    public function upd(Request $request){
-        try {
-            $param = $request->all();
-
-            $data = Dao::call_stored_procedure('SPC_PRODUCT_ACT02', $param);
-
-            if ($data[0][0]['Data'] == 'Exception' || $data[0][0]['Data'] == 'EXCEPTION') { //SQL Exception
-                $result = array(
-                    'status' => '202',
-                    'data' => $data[0],
-                );
-            } else if ($data[0][0]['Data'] != '') { //Data Validate
-                $result = array(
-                    'status' => '201',
-                    'data' => array($data[0]),
-                );
-            } else {// OK
-                $result = array(
-                    'status' => '200',
-                    'data' => '',
-                );
-            }
-
-        } catch (Exception $e) {
-            $result = array(
-                'status' => 'EX',
-                'data' => $e->getMessage(),
-            );
-        }
-
-        return response()->json($result);
-    }
-
 
 }
